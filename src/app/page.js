@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
+import { BookOpen, Trophy, Users, Shield, Target, Handshake } from "lucide-react";
 
 export default function Home() {
   return (
@@ -11,35 +13,55 @@ export default function Home() {
         <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-amber-100/40 rounded-full blur-[80px]"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="max-w-3xl">
-            <ScrollReveal>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-sm font-semibold mb-8">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Established 1991 • Haldwani, Uttarakhand
-              </div>
-            </ScrollReveal>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="max-w-3xl">
+              <ScrollReveal>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-semibold mb-8 shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  Established 1991 • Haldwani, Uttarakhand
+                </div>
+              </ScrollReveal>
 
-            <ScrollReveal delay={100}>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
-                Nurturing <span className="text-gradient-emerald">Excellence</span> in Every Child
-              </h1>
-            </ScrollReveal>
+              <ScrollReveal delay={100}>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight">
+                  Nurturing <span className="text-gradient-emerald">Excellence</span> in Every Child
+                </h1>
+              </ScrollReveal>
 
-            <ScrollReveal delay={200}>
-              <p className="text-xl text-slate-600 mb-10 max-w-2xl leading-relaxed">
-                Darpan Children Garden School provides a world-class foundation for young minds to bloom into compassionate, knowledgeable leaders of tomorrow.
-              </p>
-            </ScrollReveal>
+              <ScrollReveal delay={200}>
+                <p className="text-xl text-slate-600 mb-10 max-w-2xl leading-relaxed">
+                  Darpan Children Garden School provides a world-class foundation for young minds to bloom into compassionate, knowledgeable leaders of tomorrow.
+                </p>
+              </ScrollReveal>
 
-            <ScrollReveal delay={300}>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/admissions" className="btn-primary">
-                  Admissions Open 2026
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                </Link>
-                <Link href="/about" className="btn-secondary">
-                  Explore Our Campus
-                </Link>
+              <ScrollReveal delay={300}>
+                <div className="flex flex-wrap gap-4">
+                  <Link href="/admissions" className="btn-primary">
+                    Admissions Open 2026
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                  </Link>
+                  <Link href="/about" className="btn-secondary">
+                    Explore Our Campus
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {/* Right Image */}
+            <ScrollReveal delay={400}>
+              <div className="relative">
+                <div className="absolute inset-0 bg-emerald-500/20 rounded-3xl blur-3xl"></div>
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                  <Image
+                    src="/images/hero.png"
+                    alt="Darpan School Students"
+                    width={600}
+                    height={500}
+                    className="w-full h-auto object-cover"
+                    priority
+                  />
+                </div>
               </div>
             </ScrollReveal>
           </div>
@@ -59,52 +81,55 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: "📚",
+                icon: BookOpen,
                 title: "Academic Excellence",
                 desc: "Comprehensive curriculum fostering critical thinking, creativity, and a lifelong love for learning.",
                 color: "bg-emerald-50 text-emerald-600"
               },
               {
-                icon: "🏆",
+                icon: Trophy,
                 title: "Co-Curricular Focus",
                 desc: "Sports, music, dance, and arts programs to ensure holistic development of every student.",
                 color: "bg-amber-50 text-amber-600"
               },
               {
-                icon: "👩‍🏫",
+                icon: Users,
                 title: "Dedicated Faculty",
                 desc: "Experienced and passionate teachers committed to nurturing each child's unique potential.",
                 color: "bg-blue-50 text-blue-600"
               },
               {
-                icon: "🌳",
+                icon: Shield,
                 title: "Safe Environment",
                 desc: "Secure, clean, and child-friendly campus designed for effective learning and growth.",
                 color: "bg-teal-50 text-teal-600"
               },
               {
-                icon: "🎯",
+                icon: Target,
                 title: "Value-Based Education",
                 desc: "Strong emphasis on moral values, ethics, and character building alongside academics.",
                 color: "bg-rose-50 text-rose-600"
               },
               {
-                icon: "🤝",
+                icon: Handshake,
                 title: "Parent Partnership",
                 desc: "Active collaboration with parents to ensure seamless development at school and home.",
                 color: "bg-purple-50 text-purple-600"
               }
-            ].map((feature, index) => (
-              <ScrollReveal key={feature.title} delay={index * 100}>
-                <div className="card-premium p-8 h-full">
-                  <div className={`w-16 h-16 ${feature.color} rounded-2xl flex items-center justify-center text-3xl mb-6`}>
-                    {feature.icon}
+            ].map((feature, index) => {
+              const IconComponent = feature.icon;
+              return (
+                <ScrollReveal key={feature.title} delay={index * 100}>
+                  <div className="card-premium p-8 h-full">
+                    <div className={`w-16 h-16 ${feature.color} rounded-2xl flex items-center justify-center mb-6`}>
+                      <IconComponent className="w-8 h-8" strokeWidth={2} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
+                    <p className="text-slate-600">{feature.desc}</p>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                  <p className="text-slate-600">{feature.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>

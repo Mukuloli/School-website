@@ -1,4 +1,6 @@
 import ScrollReveal from "@/components/ScrollReveal";
+import Image from "next/image";
+import { Eye, Target } from 'lucide-react';
 
 export default function About() {
     return (
@@ -26,7 +28,13 @@ export default function About() {
                         <div className="relative group">
                             <div className="absolute inset-0 bg-emerald-600 rounded-[2rem] rotate-3 opacity-10 group-hover:rotate-6 transition-transform duration-500" />
                             <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] shadow-xl">
-                                <div className="w-full h-full bg-neutral-200 block" /> {/* Replace with actual image */}
+                                <Image
+                                    src="/images/classroom.png"
+                                    alt="Darpan School Classroom"
+                                    width={800}
+                                    height={600}
+                                    className="w-full h-full object-cover"
+                                />
 
                                 {/* Floating Stats Card */}
                                 <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-xl border border-white shadow-lg">
@@ -75,8 +83,8 @@ export default function About() {
                         <div className="bg-white p-10 rounded-[2rem] shadow-lg border border-neutral-100 hover:shadow-emerald-glow transition-all duration-300 h-full relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-emerald-100" />
                             <div className="relative z-10">
-                                <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-2xl mb-6 text-emerald-700">
-                                    👁️
+                                <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 text-emerald-700">
+                                    <Eye className="w-7 h-7" strokeWidth={2} />
                                 </div>
                                 <h3 className="text-2xl font-bold text-neutral-900 mb-4">Our Vision</h3>
                                 <p className="text-neutral-600 text-lg leading-relaxed">
@@ -90,8 +98,8 @@ export default function About() {
                         <div className="bg-white p-10 rounded-[2rem] shadow-lg border border-neutral-100 hover:shadow-amber-glow transition-all duration-300 h-full relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-amber-100" />
                             <div className="relative z-10">
-                                <div className="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center text-2xl mb-6 text-amber-700">
-                                    🎯
+                                <div className="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center mb-6 text-amber-700">
+                                    <Target className="w-7 h-7" strokeWidth={2} />
                                 </div>
                                 <h3 className="text-2xl font-bold text-neutral-900 mb-4">Our Mission</h3>
                                 <ul className="space-y-4 text-neutral-600 text-lg">

@@ -1,4 +1,5 @@
 import ScrollReveal from "@/components/ScrollReveal";
+import { Baby, BookOpen, Microscope, Heart, Users2, Lightbulb, Sunrise } from 'lucide-react';
 
 export default function Academics() {
     return (
@@ -24,39 +25,42 @@ export default function Academics() {
                                 title: "Early Childhood",
                                 sub: "Playgroup to KG",
                                 desc: "Focus on sensory learning, motor skills, and social interaction in a playful environment.",
-                                icon: "🧸",
+                                icon: Baby,
                                 color: "bg-pink-50 text-pink-600 border-pink-100"
                             },
                             {
                                 title: "Primary Years",
                                 sub: "Class 1 to 5",
                                 desc: "Building strong foundations in language, mathematics, and environmental sciences.",
-                                icon: "📚",
+                                icon: BookOpen,
                                 color: "bg-emerald-50 text-emerald-600 border-emerald-100"
                             },
                             {
                                 title: "Middle School",
                                 sub: "Class 6 to 8",
                                 desc: "Advanced concepts, critical thinking, and preparation for higher academic challenges.",
-                                icon: "🔬",
+                                icon: Microscope,
                                 color: "bg-blue-50 text-blue-600 border-blue-100"
                             }
-                        ].map((item, index) => (
-                            <ScrollReveal key={item.title} delay={index * 100}>
-                                <div className={`p-10 rounded-[2rem] border ${item.color.split(' ')[2]} bg-white shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col items-start relative group overflow-hidden`}>
-                                    <div className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl opacity-50 -mr-8 -mt-8 ${item.color.split(' ')[0]}`} />
+                        ].map((item, index) => {
+                            const IconComponent = item.icon;
+                            return (
+                                <ScrollReveal key={item.title} delay={index * 100}>
+                                    <div className={`p-10 rounded-[2rem] border ${item.color.split(' ')[2]} bg-white shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col items-start relative group overflow-hidden`}>
+                                        <div className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl opacity-50 -mr-8 -mt-8 ${item.color.split(' ')[0]}`} />
 
-                                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 ${item.color}`}>
-                                        {item.icon}
+                                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${item.color}`}>
+                                            <IconComponent className="w-8 h-8" strokeWidth={2} />
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-neutral-900 mb-1">{item.title}</h3>
+                                        <span className="text-sm font-semibold tracking-wide text-neutral-400 uppercase mb-4">{item.sub}</span>
+                                        <p className="text-neutral-600 leading-relaxed">
+                                            {item.desc}
+                                        </p>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-neutral-900 mb-1">{item.title}</h3>
-                                    <span className="text-sm font-semibold tracking-wide text-neutral-400 uppercase mb-4">{item.sub}</span>
-                                    <p className="text-neutral-600 leading-relaxed">
-                                        {item.desc}
-                                    </p>
-                                </div>
-                            </ScrollReveal>
-                        ))}
+                                </ScrollReveal>
+                            );
+                        })}
                     </div>
                 </section>
 
@@ -66,19 +70,24 @@ export default function Academics() {
 
                     <div className="grid md:grid-cols-4 gap-6">
                         {[
-                            { title: "Morning Assembly", icon: "🙏", desc: "Prayer & Ethics" },
-                            { title: "Yoga & Fitness", icon: "🧘", desc: "Mind-Body Health" },
-                            { title: "Group Projects", icon: "👥", desc: "Collaboration" },
-                            { title: "Remedial Care", icon: "💡", desc: "Personal Support" }
-                        ].map((item, index) => (
-                            <ScrollReveal key={item.title} delay={index * 100}>
-                                <div className="bg-white p-8 rounded-3xl shadow-sm border border-neutral-100 text-center hover:-translate-y-1 transition-transform cursor-default">
-                                    <div className="text-5xl mb-6">{item.icon}</div>
-                                    <h3 className="font-bold text-lg text-neutral-900 mb-2">{item.title}</h3>
-                                    <p className="text-sm text-neutral-500">{item.desc}</p>
-                                </div>
-                            </ScrollReveal>
-                        ))}
+                            { title: "Morning Assembly", icon: Sunrise, desc: "Prayer & Ethics" },
+                            { title: "Yoga & Fitness", icon: Heart, desc: "Mind-Body Health" },
+                            { title: "Group Projects", icon: Users2, desc: "Collaboration" },
+                            { title: "Remedial Care", icon: Lightbulb, desc: "Personal Support" }
+                        ].map((item, index) => {
+                            const IconComponent = item.icon;
+                            return (
+                                <ScrollReveal key={item.title} delay={index * 100}>
+                                    <div className="card-premium p-8 text-center">
+                                        <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                                            <IconComponent className="w-8 h-8" strokeWidth={2} />
+                                        </div>
+                                        <h3 className="font-bold text-lg text-neutral-900 mb-2">{item.title}</h3>
+                                        <p className="text-sm text-neutral-500">{item.desc}</p>
+                                    </div>
+                                </ScrollReveal>
+                            );
+                        })}
                     </div>
                 </section>
             </div>

@@ -1,5 +1,6 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import Link from 'next/link';
+import { Phone, MapPin, DollarSign } from 'lucide-react';
 
 export default function Admissions() {
     return (
@@ -7,6 +8,7 @@ export default function Admissions() {
             <section className="pt-32 pb-16">
                 <div className="max-w-7xl mx-auto px-4 text-center">
                     <ScrollReveal>
+                        <span className="badge-success mb-4">Admissions 2026-27</span>
                         <h1 className="text-5xl font-bold text-neutral-900 mb-4">Admissions Overview</h1>
                         <p className="text-xl text-neutral-600 font-light">
                             Join the Darpan family. Build a foundation for life.
@@ -28,10 +30,12 @@ export default function Admissions() {
                             We invite parents to visit our campus, meet our faculty, and understand our child-centric approach. Limited seats available for Pre-primary to Class 8.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-                            <a href="tel:09910288492" className="bg-white text-emerald-900 px-8 py-4 rounded-full font-bold hover:bg-emerald-50 transition-colors shadow-lg">
+                            <a href="tel:09910288492" className="btn-primary bg-white text-emerald-900 hover:bg-emerald-50">
+                                <Phone className="w-5 h-5" />
                                 Call 099102 88492
                             </a>
-                            <Link href="/contact" className="bg-emerald-800 border-2 border-emerald-600 text-white px-8 py-4 rounded-full font-bold hover:bg-emerald-700 transition-colors">
+                            <Link href="/contact" className="btn-secondary border-2 border-emerald-600 text-white hover:bg-emerald-700">
+                                <MapPin className="w-5 h-5" />
                                 Visit Campus
                             </Link>
                         </div>
@@ -46,31 +50,89 @@ export default function Admissions() {
                                 <h2 className="text-2xl font-bold text-neutral-900">Fee Structure</h2>
                                 <span className="text-neutral-500 text-sm">Academic Session 2026-27</span>
                             </div>
-                            <div className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center text-xl">
-                                💰
+                            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center">
+                                <DollarSign className="w-6 h-6" strokeWidth={2} />
                             </div>
                         </div>
                         <div className="divide-y divide-neutral-100">
                             {[
-                                { level: "Pre-Primary", grade: "Nursery - KG", fee: "Contact for details" },
-                                { level: "Primary", grade: "Class 1 - 5", fee: "Contact for details" },
-                                { level: "Upper Primary", grade: "Class 6 - 8", fee: "Contact for details" }
+                                {
+                                    level: "Pre-Primary",
+                                    grade: "Nursery - KG",
+                                    tuition: "₹18,000",
+                                    term: "per term",
+                                    annual: "₹54,000/year"
+                                },
+                                {
+                                    level: "Primary",
+                                    grade: "Class 1 - 5",
+                                    tuition: "₹22,000",
+                                    term: "per term",
+                                    annual: "₹66,000/year"
+                                },
+                                {
+                                    level: "Upper Primary",
+                                    grade: "Class 6 - 8",
+                                    tuition: "₹25,000",
+                                    term: "per term",
+                                    annual: "₹75,000/year"
+                                }
                             ].map((item, i) => (
-                                <div key={i} className="flex flex-col md:flex-row justify-between items-center p-8 hover:bg-neutral-50 transition-colors">
-                                    <div className="text-center md:text-left mb-4 md:mb-0">
-                                        <h3 className="font-bold text-lg text-neutral-900">{item.level}</h3>
+                                <div key={i} className="flex flex-col md:flex-row justify-between items-start md:items-center p-8 hover:bg-neutral-50 transition-colors gap-4">
+                                    <div className="flex-1">
+                                        <h3 className="font-bold text-lg text-neutral-900 mb-1">{item.level}</h3>
                                         <p className="text-neutral-500 text-sm">{item.grade}</p>
                                     </div>
-                                    <div className="flex items-center gap-4">
-                                        <span className="font-medium text-neutral-400 italic">{item.fee}</span>
-                                        <button className="w-8 h-8 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-400 hover:text-emerald-600 hover:border-emerald-600 transition-colors">
-                                            +
-                                        </button>
+                                    <div className="flex flex-col items-end">
+                                        <div className="flex items-baseline gap-2">
+                                            <span className="text-2xl font-bold text-emerald-700">{item.tuition}</span>
+                                            <span className="text-sm text-neutral-400">{item.term}</span>
+                                        </div>
+                                        <span className="text-xs text-neutral-400 mt-1">{item.annual}</span>
                                     </div>
                                 </div>
                             ))}
-                            <div className="p-6 bg-neutral-50 text-sm text-neutral-500 text-center">
-                                * Transport & Annual fees are additional. Scholarships available for meritorious students.
+
+                            {/* Additional Charges */}
+                            <div className="p-8 bg-gradient-to-br from-neutral-50 to-emerald-50/30">
+                                <h4 className="font-bold text-neutral-900 mb-4 flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                                    Additional Charges
+                                </h4>
+                                <div className="grid md:grid-cols-2 gap-4 text-sm">
+                                    <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-100">
+                                        <span className="text-neutral-600">Admission Fee (One-time)</span>
+                                        <span className="font-semibold text-neutral-900">₹5,000</span>
+                                    </div>
+                                    <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-100">
+                                        <span className="text-neutral-600">Annual Charges</span>
+                                        <span className="font-semibold text-neutral-900">₹8,000</span>
+                                    </div>
+                                    <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-100">
+                                        <span className="text-neutral-600">Transport Fee (Optional)</span>
+                                        <span className="font-semibold text-neutral-900">₹12,000/year</span>
+                                    </div>
+                                    <div className="flex justify-between items-center p-3 bg-white rounded-lg border border-neutral-100">
+                                        <span className="text-neutral-600">Books & Uniform (Approx.)</span>
+                                        <span className="font-semibold text-neutral-900">₹6,000</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Footer Note */}
+                            <div className="p-6 bg-amber-50 border-t-2 border-amber-200">
+                                <div className="flex items-start gap-3">
+                                    <span className="text-amber-600 text-xl">💡</span>
+                                    <div className="text-sm text-neutral-700">
+                                        <p className="font-semibold mb-1">Important Notes:</p>
+                                        <ul className="space-y-1 text-neutral-600">
+                                            <li>• Fees are payable in 3 terms (April, August, December)</li>
+                                            <li>• Scholarships available for meritorious students</li>
+                                            <li>• Sibling discount: 10% on tuition fees</li>
+                                            <li>• For detailed fee structure, please contact the office</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
