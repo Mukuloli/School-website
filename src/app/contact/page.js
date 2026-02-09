@@ -1,65 +1,93 @@
+'use client';
 import ScrollReveal from "@/components/ScrollReveal";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { motion } from "framer-motion";
+import { MapPin, Phone, Mail, Send, MessageCircle, Sparkles } from "lucide-react";
 
 export default function Contact() {
     return (
-        <div className="min-h-screen bg-neutral-50">
-            <section className="pt-32 pb-16 text-center">
-                <ScrollReveal>
-                    <h1 className="text-5xl font-bold text-neutral-900 mb-4">Get in Touch</h1>
-                    <p className="text-xl text-neutral-600 font-light">We'd love to hear from you.</p>
-                </ScrollReveal>
+        <div className="min-h-screen bg-[#0A0E27]">
+            {/* Header */}
+            <section className="pt-32 pb-16 relative overflow-hidden bg-aurora">
+                <div className="absolute inset-0 neural-bg opacity-30" />
+                <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
+                    <ScrollReveal>
+                        <div className="badge-neon mb-6 inline-flex">
+                            <MessageCircle className="w-4 h-4" />
+                            Get in Touch
+                        </div>
+                    </ScrollReveal>
+                    <ScrollReveal delay={100}>
+                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+                            Contact <span className="text-holographic">Us</span>
+                        </h1>
+                    </ScrollReveal>
+                    <ScrollReveal delay={200}>
+                        <p className="text-xl text-white/60 max-w-2xl mx-auto">
+                            We'd love to hear from you. Let's start a conversation.
+                        </p>
+                    </ScrollReveal>
+                </div>
             </section>
 
             <div className="max-w-7xl mx-auto px-4 pb-24">
                 <ScrollReveal>
-                    <div className="bg-white rounded-[3rem] overflow-hidden shadow-2xl border border-white grid lg:grid-cols-2">
+                    <div className="glass-card overflow-hidden grid lg:grid-cols-2">
 
-                        {/* Contact Info Panel - Dark Emerald */}
-                        <div className="bg-emerald-900 p-12 md:p-16 text-white relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl -mr-20 -mt-20" />
+                        {/* Contact Info Panel */}
+                        <div className="p-12 md:p-16 relative overflow-hidden bg-gradient-to-br from-[#00F5FF]/10 to-[#B026FF]/10">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-[#00F5FF]/10 rounded-full blur-[100px] -mr-20 -mt-20" />
+                            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#B026FF]/10 rounded-full blur-[100px] -ml-20 -mb-20" />
 
-                            <h2 className="text-3xl font-bold mb-10 relative z-10">Contact Information</h2>
+                            <h2 className="text-3xl font-bold text-white mb-10 relative z-10">Contact Information</h2>
 
                             <div className="space-y-10 relative z-10">
-                                <div className="flex items-start gap-6">
-                                    <div className="w-12 h-12 bg-emerald-800 rounded-xl flex items-center justify-center shrink-0 border border-emerald-700">
-                                        <MapPin className="w-6 h-6" strokeWidth={2} />
+                                <motion.div
+                                    whileHover={{ x: 10 }}
+                                    className="flex items-start gap-6"
+                                >
+                                    <div className="icon-box shrink-0 bg-gradient-to-br from-[#00F5FF] to-[#4D7CFE]">
+                                        <MapPin className="w-6 h-6 text-white" strokeWidth={1.5} />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-lg mb-1">Campus Location</h3>
-                                        <p className="text-emerald-100/80 leading-relaxed max-w-xs">
+                                        <h3 className="font-bold text-lg text-white mb-2">Campus Location</h3>
+                                        <p className="text-white/60 leading-relaxed">
                                             Kartikey Colony Phase-III,<br />
                                             Harinagar, Kusumkhera,<br />
                                             Haldwani, Uttarakhand 263139
                                         </p>
                                     </div>
-                                </div>
+                                </motion.div>
 
-                                <div className="flex items-start gap-6">
-                                    <div className="w-12 h-12 bg-emerald-800 rounded-xl flex items-center justify-center shrink-0 border border-emerald-700">
-                                        <Phone className="w-6 h-6" strokeWidth={2} />
+                                <motion.div
+                                    whileHover={{ x: 10 }}
+                                    className="flex items-start gap-6"
+                                >
+                                    <div className="icon-box shrink-0 bg-gradient-to-br from-[#B026FF] to-[#FF6B9D]">
+                                        <Phone className="w-6 h-6 text-white" strokeWidth={1.5} />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-lg mb-1">Phone Numbers</h3>
-                                        <div className="space-y-1">
-                                            <a href="tel:09910288492" className="block text-emerald-100/80 hover:text-white transition-colors">099102 88492</a>
-                                            <a href="tel:05946260166" className="block text-emerald-100/80 hover:text-white transition-colors">05946-260166</a>
+                                        <h3 className="font-bold text-lg text-white mb-2">Phone Numbers</h3>
+                                        <div className="space-y-2">
+                                            <a href="tel:09910288492" className="block text-white/60 hover:text-[#00F5FF] transition-colors">099102 88492</a>
+                                            <a href="tel:05946260166" className="block text-white/60 hover:text-[#00F5FF] transition-colors">05946-260166</a>
                                         </div>
                                     </div>
-                                </div>
+                                </motion.div>
 
-                                <div className="flex items-start gap-6">
-                                    <div className="w-12 h-12 bg-emerald-800 rounded-xl flex items-center justify-center shrink-0 border border-emerald-700">
-                                        <Mail className="w-6 h-6" strokeWidth={2} />
+                                <motion.div
+                                    whileHover={{ x: 10 }}
+                                    className="flex items-start gap-6"
+                                >
+                                    <div className="icon-box shrink-0 bg-gradient-to-br from-[#00FF88] to-[#00F5FF]">
+                                        <Mail className="w-6 h-6 text-white" strokeWidth={1.5} />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-lg mb-1">Email Address</h3>
-                                        <a href="mailto:darpanchildrengarden@gmail.com" className="text-emerald-100/80 hover:text-white transition-colors">
+                                        <h3 className="font-bold text-lg text-white mb-2">Email Address</h3>
+                                        <a href="mailto:darpanchildrengarden@gmail.com" className="text-white/60 hover:text-[#00F5FF] transition-colors">
                                             darpanchildrengarden@gmail.com
                                         </a>
                                     </div>
-                                </div>
+                                </motion.div>
                             </div>
                         </div>
 
@@ -69,12 +97,12 @@ export default function Contact() {
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3480.992225883021!2d79.5166!3d29.2167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDEzJzAwLjEiTiA3OcKwMzEnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
                                 width="100%"
                                 height="100%"
-                                style={{ border: 0, position: 'absolute', inset: 0 }}
+                                style={{ border: 0, position: 'absolute', inset: 0, filter: 'invert(0.9) hue-rotate(180deg)' }}
                                 allowFullScreen=""
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                                 title="Google Map"
-                                className="grayscale hover:grayscale-0 transition-all duration-700"
+                                className="opacity-80 hover:opacity-100 transition-opacity duration-500"
                             ></iframe>
                         </div>
                     </div>
@@ -84,10 +112,10 @@ export default function Contact() {
                 <ScrollReveal delay={200}>
                     <div className="mt-16 max-w-3xl mx-auto">
                         <div className="text-center mb-10">
-                            <h2 className="text-4xl font-bold text-slate-900 mb-3">Send Us a Message</h2>
-                            <p className="text-lg text-slate-600">Have questions? We're here to help!</p>
+                            <h2 className="text-4xl font-bold text-white mb-3">Send Us a <span className="text-holographic">Message</span></h2>
+                            <p className="text-lg text-white/60">Have questions? We're here to help!</p>
                         </div>
-                        <div className="bg-white rounded-2xl shadow-xl border border-slate-100 p-8 md:p-12">
+                        <div className="glass-card p-8 md:p-12">
                             <ContactForm />
                         </div>
                     </div>
@@ -102,8 +130,8 @@ function ContactForm() {
         <form className="space-y-6">
             {/* Name Input */}
             <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-2">
-                    Full Name <span className="text-red-500">*</span>
+                <label htmlFor="name" className="block text-sm font-semibold text-white/80 mb-2">
+                    Full Name <span className="text-[#FF6B9D]">*</span>
                 </label>
                 <input
                     type="text"
@@ -111,14 +139,14 @@ function ContactForm() {
                     name="name"
                     required
                     placeholder="Enter your full name"
-                    className="input-modern"
+                    className="input-neon"
                 />
             </div>
 
             {/* Email Input */}
             <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-2">
-                    Email Address <span className="text-red-500">*</span>
+                <label htmlFor="email" className="block text-sm font-semibold text-white/80 mb-2">
+                    Email Address <span className="text-[#FF6B9D]">*</span>
                 </label>
                 <input
                     type="email"
@@ -126,13 +154,13 @@ function ContactForm() {
                     name="email"
                     required
                     placeholder="your.email@example.com"
-                    className="input-modern"
+                    className="input-neon"
                 />
             </div>
 
             {/* Phone Input */}
             <div>
-                <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-2">
+                <label htmlFor="phone" className="block text-sm font-semibold text-white/80 mb-2">
                     Phone Number
                 </label>
                 <input
@@ -140,20 +168,20 @@ function ContactForm() {
                     id="phone"
                     name="phone"
                     placeholder="+91 XXXXX XXXXX"
-                    className="input-modern"
+                    className="input-neon"
                 />
             </div>
 
             {/* Subject Input */}
             <div>
-                <label htmlFor="subject" className="block text-sm font-semibold text-slate-700 mb-2">
-                    Subject <span className="text-red-500">*</span>
+                <label htmlFor="subject" className="block text-sm font-semibold text-white/80 mb-2">
+                    Subject <span className="text-[#FF6B9D]">*</span>
                 </label>
                 <select
                     id="subject"
                     name="subject"
                     required
-                    className="input-modern"
+                    className="input-neon"
                 >
                     <option value="">Select a subject</option>
                     <option value="admission">Admission Inquiry</option>
@@ -165,8 +193,8 @@ function ContactForm() {
 
             {/* Message Textarea */}
             <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-2">
-                    Message <span className="text-red-500">*</span>
+                <label htmlFor="message" className="block text-sm font-semibold text-white/80 mb-2">
+                    Message <span className="text-[#FF6B9D]">*</span>
                 </label>
                 <textarea
                     id="message"
@@ -174,20 +202,20 @@ function ContactForm() {
                     required
                     rows="5"
                     placeholder="Write your message here..."
-                    className="input-modern resize-none"
+                    className="input-neon resize-none"
                 ></textarea>
             </div>
 
             {/* Submit Button */}
-            <button
+            <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="btn-gradient-blue w-full py-3 text-base font-semibold"
+                className="btn-neon w-full py-4"
             >
+                <Send className="w-5 h-5" />
                 Send Message
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-            </button>
+            </motion.button>
         </form>
     );
 }

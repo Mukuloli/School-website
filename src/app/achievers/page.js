@@ -1,38 +1,79 @@
+'use client';
 import ScrollReveal from "@/components/ScrollReveal";
+import { motion } from "framer-motion";
+import { Trophy, Medal, Star, Sparkles } from 'lucide-react';
 
 export default function Achievers() {
     const categories = [
-        { title: "Academic Toppers", icon: "🥇", desc: "Board Exam Merits", bg: "from-amber-50 to-orange-50", text: "text-amber-700" },
-        { title: "Sports Champions", icon: "🏆", desc: "District & State Level", bg: "from-emerald-50 to-teal-50", text: "text-emerald-700" },
-        { title: "Cultural Stars", icon: "🎭", desc: "Art, Music & Dance", bg: "from-purple-50 to-pink-50", text: "text-purple-700" },
+        {
+            title: "Academic Toppers",
+            icon: Medal,
+            desc: "Board Exam Merits",
+            gradient: "from-[#FF6B35] to-[#FF6B9D]"
+        },
+        {
+            title: "Sports Champions",
+            icon: Trophy,
+            desc: "District & State Level",
+            gradient: "from-[#00FF88] to-[#00F5FF]"
+        },
+        {
+            title: "Cultural Stars",
+            icon: Star,
+            desc: "Art, Music & Dance",
+            gradient: "from-[#B026FF] to-[#FF6B9D]"
+        },
     ];
 
     return (
-        <div className="min-h-screen bg-neutral-50">
-            <section className="pt-32 pb-16 text-center">
-                <ScrollReveal>
-                    <h1 className="text-5xl font-bold text-neutral-900 mb-4">Hall of Fame</h1>
-                    <p className="text-xl text-neutral-600 font-light">Celebrating Student Excellence</p>
-                </ScrollReveal>
+        <div className="min-h-screen bg-[#0A0E27]">
+            {/* Header */}
+            <section className="pt-32 pb-16 relative overflow-hidden bg-aurora">
+                <div className="absolute inset-0 neural-bg opacity-30" />
+                <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
+                    <ScrollReveal>
+                        <div className="badge-glow mb-6 inline-flex">
+                            <Trophy className="w-4 h-4" />
+                            Hall of Fame
+                        </div>
+                    </ScrollReveal>
+                    <ScrollReveal delay={100}>
+                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+                            Our <span className="text-holographic">Achievers</span>
+                        </h1>
+                    </ScrollReveal>
+                    <ScrollReveal delay={200}>
+                        <p className="text-xl text-white/60">Celebrating Student Excellence</p>
+                    </ScrollReveal>
+                </div>
             </section>
 
             <div className="max-w-7xl mx-auto px-4 pb-24">
                 <div className="grid md:grid-cols-3 gap-8">
                     {categories.map((cat, i) => (
                         <ScrollReveal key={cat.title} delay={i * 100}>
-                            <div className={`bg-gradient-to-br ${cat.bg} p-10 rounded-[2.5rem] border border-white/50 h-full flex flex-col items-center text-center shadow-lg hover:-translate-y-2 transition-transform duration-300`}>
-                                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-5xl mb-8 shadow-sm">
-                                    {cat.icon}
-                                </div>
-                                <h3 className={`text-2xl font-bold mb-2 ${cat.text}`}>{cat.title}</h3>
-                                <p className="text-neutral-500 font-medium mb-8">{cat.desc}</p>
+                            <motion.div
+                                whileHover={{ y: -10, scale: 1.02 }}
+                                className="glass-card p-10 h-full flex flex-col items-center text-center group"
+                            >
+                                <motion.div
+                                    animate={{ y: [0, -5, 0] }}
+                                    transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
+                                    className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${cat.gradient} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform`}
+                                >
+                                    <cat.icon className="w-12 h-12 text-white" strokeWidth={1.5} />
+                                </motion.div>
+                                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-holographic transition-all">
+                                    {cat.title}
+                                </h3>
+                                <p className="text-white/50 font-medium mb-8">{cat.desc}</p>
 
-                                <div className="w-full bg-white/60 rounded-xl p-8 backdrop-blur-sm mt-auto border border-white/50">
-                                    <p className="text-neutral-400 italic text-sm">
+                                <div className="w-full glass-dark rounded-xl p-6 mt-auto">
+                                    <p className="text-white/40 italic text-sm">
                                         "List of recent achievers will be updated for the current academic session."
                                     </p>
                                 </div>
-                            </div>
+                            </motion.div>
                         </ScrollReveal>
                     ))}
                 </div>

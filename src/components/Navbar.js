@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,7 +18,6 @@ export default function Navbar() {
     const navLinks = [
         { name: 'Home', href: '/' },
         { name: 'About', href: '/about' },
-        { name: 'Leadership', href: '/leadership' },
         { name: 'Academics', href: '/academics' },
         { name: 'Events', href: '/events' },
         { name: 'Gallery', href: '/gallery' },
@@ -25,81 +25,137 @@ export default function Navbar() {
     ];
 
     return (
-        <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                ? 'glass-navbar shadow-lg py-3'
-                : 'bg-white py-4'
+        <motion.nav
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+                    ? 'glass-navbar shadow-2xl shadow-black/20 py-3'
+                    : 'bg-transparent py-5'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 lg:px-6">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3 group">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-all duration-300 group-hover:scale-105">
-                            D
-                        </div>
+                        <motion.div
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00F5FF] via-[#B026FF] to-[#FF6B9D] flex items-center justify-center text-white font-bold text-lg shadow-lg relative overflow-hidden"
+                        >
+                            <span className="relative z-10">D</span>
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#00F5FF] via-[#B026FF] to-[#FF6B9D] opacity-0 group-hover:opacity-100 transition-opacity animate-gradient" />
+                        </motion.div>
                         <div>
-                            <span className="text-lg font-bold text-slate-800 block leading-tight">Darpan</span>
-                            <span className="text-xs text-emerald-600 font-medium">Children Garden School</span>
+                            <span className="text-lg font-bold text-white block leading-tight">Darpan</span>
+                            <span className="text-xs text-[#00F5FF] font-medium">Children Garden School</span>
                         </div>
                     </Link>
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center gap-1">
-                        {navLinks.map((link) => (
-                            <Link
+                        {navLinks.map((link, index) => (
+                            <motion.div
                                 key={link.name}
-                                href={link.href}
-                                className="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 transition-all duration-200"
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
                             >
-                                {link.name}
-                            </Link>
+                                <Link
+                                    href={link.href}
+                                    className="relative px-4 py-2 rounded-lg text-sm font-medium text-white/70 hover:text-white transition-all duration-300 group"
+                                >
+                                    {link.name}
+                                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-[#00F5FF] to-[#B026FF] group-hover:w-full transition-all duration-300" />
+                                </Link>
+                            </motion.div>
                         ))}
-                        <Link
-                            href="/admissions"
-                            className="ml-4 px-6 py-2.5 text-sm font-semibold bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-full hover:shadow-lg hover:shadow-emerald-500/30 transition-all duration-300 hover:-translate-y-0.5"
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.6 }}
                         >
-                            Apply Now
-                        </Link>
+                            <Link
+                                href="/admissions"
+                                className="ml-4 btn-neon text-sm py-2.5 px-6"
+                            >
+                                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                                Apply Now
+                            </Link>
+                        </motion.div>
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <button
-                        className="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors"
+                    <motion.button
+                        whileTap={{ scale: 0.95 }}
+                        className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         aria-label="Toggle menu"
                     >
                         <div className="w-6 h-5 relative flex flex-col justify-between">
-                            <span className={`w-full h-0.5 bg-current rounded transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-                            <span className={`w-full h-0.5 bg-current rounded transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                            <span className={`w-full h-0.5 bg-current rounded transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                            <motion.span
+                                animate={{ rotate: isMenuOpen ? 45 : 0, y: isMenuOpen ? 9 : 0 }}
+                                className="w-full h-0.5 bg-current rounded origin-left transition-colors"
+                                style={{ backgroundColor: isMenuOpen ? '#00F5FF' : 'currentColor' }}
+                            />
+                            <motion.span
+                                animate={{ opacity: isMenuOpen ? 0 : 1 }}
+                                className="w-full h-0.5 bg-current rounded"
+                            />
+                            <motion.span
+                                animate={{ rotate: isMenuOpen ? -45 : 0, y: isMenuOpen ? -9 : 0 }}
+                                className="w-full h-0.5 bg-current rounded origin-left transition-colors"
+                                style={{ backgroundColor: isMenuOpen ? '#00F5FF' : 'currentColor' }}
+                            />
                         </div>
-                    </button>
+                    </motion.button>
                 </div>
 
                 {/* Mobile Navigation */}
-                <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-[500px] mt-4 pb-4' : 'max-h-0'}`}>
-                    <div className="bg-slate-50 rounded-2xl p-4 space-y-1">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="block py-3 px-4 text-base font-medium text-slate-600 hover:text-emerald-700 hover:bg-white rounded-xl transition-colors"
-                                onClick={() => setIsMenuOpen(false)}
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                        <Link
-                            href="/admissions"
-                            className="block mt-3 py-3 px-4 text-center text-base font-semibold bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
+                <AnimatePresence>
+                    {isMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="lg:hidden mt-4 pb-4 overflow-hidden"
                         >
-                            Apply Now
-                        </Link>
-                    </div>
-                </div>
+                            <div className="glass-card p-4 space-y-1">
+                                {navLinks.map((link, index) => (
+                                    <motion.div
+                                        key={link.name}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.05 }}
+                                    >
+                                        <Link
+                                            href={link.href}
+                                            className="block py-3 px-4 text-base font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                                            onClick={() => setIsMenuOpen(false)}
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    </motion.div>
+                                ))}
+                                <motion.div
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                >
+                                    <Link
+                                        href="/admissions"
+                                        className="block mt-3 py-3 px-4 text-center text-base font-semibold btn-neon"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        Apply Now
+                                    </Link>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
-        </nav>
+        </motion.nav>
     );
 }

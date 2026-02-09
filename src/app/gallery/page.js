@@ -1,53 +1,85 @@
+'use client';
 import ScrollReveal from "@/components/ScrollReveal";
-import Image from "next/image";
+import { motion } from "framer-motion";
+import { Camera, Image as ImageIcon } from 'lucide-react';
 
 export default function Gallery() {
     const galleryItems = [
-        { id: 1, title: "Classroom Learning", color: "bg-emerald-100" },
-        { id: 2, title: "Sports Day Rally", color: "bg-amber-100" },
-        { id: 3, title: "Cultural Dance", color: "bg-purple-100" },
-        { id: 4, title: "Art Workshop", color: "bg-blue-100" },
-        { id: 5, title: "Science Projects", color: "bg-teal-100" },
-        { id: 6, title: "Award Ceremony", color: "bg-rose-100" },
+        { id: 1, title: "Classroom Learning", gradient: "from-[#00F5FF] to-[#4D7CFE]" },
+        { id: 2, title: "Sports Day Rally", gradient: "from-[#00FF88] to-[#00F5FF]" },
+        { id: 3, title: "Cultural Dance", gradient: "from-[#B026FF] to-[#FF6B9D]" },
+        { id: 4, title: "Art Workshop", gradient: "from-[#4D7CFE] to-[#B026FF]" },
+        { id: 5, title: "Science Projects", gradient: "from-[#00F5FF] to-[#00FF88]" },
+        { id: 6, title: "Award Ceremony", gradient: "from-[#FF6B9D] to-[#FF6B35]" },
     ];
 
     return (
-        <div className="min-h-screen bg-neutral-50">
-            <section className="pt-32 pb-16 text-center">
-                <ScrollReveal>
-                    <h1 className="text-5xl font-bold text-neutral-900 mb-4">Gallery</h1>
-                    <p className="text-xl text-neutral-600 font-light">Capturing Moments of Joy</p>
-                </ScrollReveal>
+        <div className="min-h-screen bg-[#0A0E27]">
+            {/* Header */}
+            <section className="pt-32 pb-16 relative overflow-hidden bg-aurora">
+                <div className="absolute inset-0 neural-bg opacity-30" />
+                <div className="max-w-7xl mx-auto px-4 text-center relative z-10">
+                    <ScrollReveal>
+                        <div className="badge-neon mb-6 inline-flex">
+                            <Camera className="w-4 h-4" />
+                            Memories
+                        </div>
+                    </ScrollReveal>
+                    <ScrollReveal delay={100}>
+                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+                            Photo <span className="text-holographic">Gallery</span>
+                        </h1>
+                    </ScrollReveal>
+                    <ScrollReveal delay={200}>
+                        <p className="text-xl text-white/60">Capturing Moments of Joy</p>
+                    </ScrollReveal>
+                </div>
             </section>
 
             <div className="max-w-7xl mx-auto px-4 pb-24">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {galleryItems.map((item, index) => (
                         <ScrollReveal key={item.id} delay={index * 100}>
-                            <div className="group relative aspect-[4/3] bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer">
-                                {/* Placeholder */}
-                                <div className={`w-full h-full ${item.color} flex items-center justify-center transition-transform duration-700 group-hover:scale-110`}>
-                                    <span className="text-neutral-400 text-5xl opacity-50">📷</span>
+                            <motion.div
+                                whileHover={{ y: -10, scale: 1.02 }}
+                                className="group relative aspect-[4/3] glass-card overflow-hidden cursor-pointer"
+                            >
+                                {/* Gradient Placeholder */}
+                                <div className={`w-full h-full bg-gradient-to-br ${item.gradient} opacity-30 group-hover:opacity-50 transition-all duration-500`}>
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <ImageIcon className="w-16 h-16 text-white/20 group-hover:scale-110 transition-transform" />
+                                    </div>
                                 </div>
 
-                                {/* Premium Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-                                    <span className="text-white font-bold text-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                {/* Hover Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                                    <motion.span
+                                        initial={{ y: 20, opacity: 0 }}
+                                        whileInView={{ y: 0, opacity: 1 }}
+                                        className="text-white font-bold text-xl"
+                                    >
                                         {item.title}
-                                    </span>
-                                    <span className="text-white/80 text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                                    </motion.span>
+                                    <span className="text-[#00F5FF] text-sm mt-1">
                                         View Full Size
                                     </span>
                                 </div>
-                            </div>
+
+                                {/* Glow Border */}
+                                <div className="absolute inset-0 border border-white/0 group-hover:border-[#00F5FF]/30 rounded-[1.5rem] transition-all" />
+                            </motion.div>
                         </ScrollReveal>
                     ))}
                 </div>
 
                 <div className="mt-16 text-center">
-                    <button className="px-8 py-3 rounded-full border border-neutral-300 text-neutral-600 hover:bg-neutral-900 hover:text-white transition-colors">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="btn-glass"
+                    >
                         Load More Photos
-                    </button>
+                    </motion.button>
                 </div>
             </div>
         </div>
