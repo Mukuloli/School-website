@@ -18,11 +18,15 @@ export default function Navbar() {
     const navLinks = [
         { name: 'Home', href: '/' },
         { name: 'About', href: '/about' },
+        { name: 'Leadership', href: '/leadership' },
         { name: 'Academics', href: '/academics' },
+        { name: 'Achievers', href: '/achievers' },
         { name: 'Events', href: '/events' },
         { name: 'Gallery', href: '/gallery' },
+        { name: 'Alumni', href: '/alumni' },
         { name: 'Contact', href: '/contact' },
     ];
+
 
     return (
         <motion.nav
@@ -30,8 +34,8 @@ export default function Navbar() {
             animate={{ y: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? 'glass-navbar shadow-2xl shadow-black/20 py-3'
-                    : 'bg-transparent py-5'
+                ? 'glass-navbar shadow-2xl shadow-black/20 py-3'
+                : 'bg-transparent py-5'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 lg:px-6">
